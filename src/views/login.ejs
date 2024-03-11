@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Iniciar Sesion</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url('https://www.telemundo.com/sites/nbcutelemundo/files/styles/fit-1240w/public/images/article/cover/2018/09/26/edificio-de-la-universidad-de-california-en-los-angeles.jpg?ramen_itok=iqwQftIcTf');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .wrapper {
+        width: 420px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+
+    .wrapper h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .wrapper .input-box {
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 45px 20px 20px;
+    }
+
+    .input-box input::placeholder {
+        color: #fff;
+    }
+
+    .input-box i {
+        position: absolute;
+        font-size: 20px;
+        right: 55px;
+        transform: translateY(-50%);
+        margin-top: 25px;
+    }
+
+    .wrapper .btn {
+        width: 100%;
+        height: 45px;
+        background-color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        font-size: 16px;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .wrapper .register-link {
+        font-size: 14.5px;
+        text-align: center;
+        margin-top: 20px 0 15px;
+    }
+
+    .register-link p a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .register-link p a:hover {
+        text-decoration: underline;
+    }
+
+    .alerta {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        height: auto;
+        width: 100%;
+        border: 2px solid rgba(255, 255, 255, .2);
+        background: transparent;
+        backdrop-filter: blur(20px);
+        padding: 20px;
+    }
+
+    .alerta h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 30px;
+    }
+
+    .alerta p {
+        padding: 20px;
+        color: #fff;
+        font-size: 20px;
+        width: 100vw;
+        height: auto;
+        word-wrap: break-word;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <form method="post">
+            <h1>Login</h1>
+            <div class="input-box">
+                <label for="usuario"></label>
+                <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <label for="contraseña"></label>
+                <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+
+            <input type="submit" value="Login" class="btn" />
+
+            <div class="register-link">
+                <p>¿No tienes una cuenta registrada? <a href="http://localhost:3000/api/registrar">Registrarse</a></p>
+            </div>
+        </form>
+    </div>
+
+    <% if(status==200) { %>
+        <div class="alerta">
+            <h2>Has iniciado sesion, aqui tienes el token</h2>
+            <p>
+                <%= token %>
+            </p>
+        </div>
+        <% } %>
+
+            <% if(status==400) { %>
+                <div class="alerta">
+                    <h2>No has iniciado sesion por el siguiente error</h2>
+                    <p>
+                        <%= error %>
+                    </p>
+                </div>
+                <% } %>
+</body>
+
+</html>
